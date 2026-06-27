@@ -59,6 +59,52 @@ header {
 .btn-purple:hover:not(:disabled)   { background: #bc8cff; color: #000; }
 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
+/* Grupo "Novo Grafo" com seletor de quantidade */
+.new-graph-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 2px 6px 2px 8px;
+  background: var(--bg3);
+}
+
+.node-count-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.node-count-input {
+  width: 40px;
+  padding: 3px 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 0.8rem;
+  font-family: monospace;
+  font-weight: 700;
+  text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.node-count-input::-webkit-inner-spin-button,
+.node-count-input::-webkit-outer-spin-button { opacity: 1; }
+.node-count-input:focus { outline: none; border-color: var(--blue); }
+
+/* O botão dentro do grupo não precisa da borda externa */
+.new-graph-group .btn {
+  border-color: transparent;
+  background: transparent;
+  color: var(--text);
+  padding: 4px 10px;
+}
+.new-graph-group .btn:hover { border-color: var(--blue); color: var(--blue); background: transparent; }
+
 .main {
   display: grid;
   grid-template-columns: 1fr 340px;

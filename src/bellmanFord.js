@@ -126,9 +126,10 @@ export function tracePath(succ, start, target) {
   return path;
 }
 
-// Gera um grafo aleatório conexo com T como destino
-export function generateRandomGraph() {
-  const count = 5 + Math.floor(Math.random() * 3); // 5–7 nós não-T
+// Gera um grafo aleatório conexo com T como destino.
+// totalNodes = total de nós incluindo T (mín 4, máx 11)
+export function generateRandomGraph(totalNodes = 8) {
+  const count = Math.max(3, Math.min(10, totalNodes - 1)); // nós não-T
   // Letras sem T
   const available = 'ABCDEFGHIJKLMNOPQRSUVWXYZ'.split('');
   const nonT = available.slice(0, count);

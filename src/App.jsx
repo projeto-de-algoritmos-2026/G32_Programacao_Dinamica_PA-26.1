@@ -28,6 +28,9 @@ export default function App() {
   const [removedEdge, setRemovedEdge] = useState(null);
   const [asyncQueue, setAsyncQueue]   = useState([]);
 
+  // Tamanho do grafo aleatório (total de nós incluindo T)
+  const [nodeCount, setNodeCount]   = useState(8);
+
   // Modos
   const [asyncMode, setAsyncMode]   = useState(false);
   const [ctInfMode, setCtInfMode]   = useState(false);
@@ -43,7 +46,7 @@ export default function App() {
 
   // Ref sempre atualizado — leitura segura dentro de setInterval
   const state = useRef({});
-  state.current = { M, succ, iter, converged, changed, path, asyncMode, ctInfMode, edges, removedEdge, asyncQueue, nodes, edgesDef };
+  state.current = { M, succ, iter, converged, changed, path, asyncMode, ctInfMode, edges, removedEdge, asyncQueue, nodes, edgesDef, nodeCount };
 
   // ── helpers ──────────────────────────────────────────────────────
   const addLog = useCallback((msg, type = 'info') => {
@@ -204,8 +207,9 @@ export default function App() {
   }, [applyReset]);
 
   const handleNewGraph = useCallback(() => {
-    const { nodes: newNodes, edges: newEdges } = generateRandomGraph();
-    applyReset(newNodes, newEdges, 'Novo grafo aleatório gerado!');
+    const nc = state.current.nodeCount;
+    const { nodes: newNodes, edges: newEdges } = generateRandomGraph(nc);
+    applyReset(newNodes, newEdges, `Novo grafo com ${nc} nós gerado!`);
   }, [applyReset]);
 
   const handleToggleAsync = useCallback(() => {
@@ -275,7 +279,17 @@ export default function App() {
         <div className="header-controls">
           <span className={`mode-badge ${modeBadge.cls}`}>{modeBadge.text}</span>
           <button className="btn btn-secondary" onClick={handleReset}>↺ Reiniciar</button>
-          <button className="btn btn-secondary" onClick={handleNewGraph}>⚄ Novo Grafo</button>
+          <div className="new-graph-group">
+            <label className="node-count-label">Nós</label>
+            <input
+              type="number"
+              className="node-count-input"
+              min={4} max={11}
+              value={nodeCount}
+              onChange={e => setNodeCount(Math.max(4, Math.min(11, Number(e.target.value))))}
+            />
+            <button className="btn btn-secondary" onClick={handleNewGraph}>⚄ Novo Grafo</button>
+          </div>
           <button className="btn btn-primary" onClick={handleStep} disabled={converged}>▶ Próxima Iteração</button>
           <button className="btn btn-secondary" onClick={handleAutoToggle} disabled={converged}>
             {isAutoRunning ? '⏸ Pausar' : '⏩ Auto'}
