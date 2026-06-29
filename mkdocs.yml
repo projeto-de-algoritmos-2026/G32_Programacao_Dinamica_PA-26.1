@@ -1,0 +1,43 @@
+site_name: Distance Vector Protocol — Bellman-Ford
+site_description: Visualizador interativo do algoritmo de roteamento Bellman-Ford com três modos de execução
+repo_url: https://github.com/Mach1r0/G32_Programacao_Dinamica_PA-26.1
+repo_name: G32_Programacao_Dinamica_PA-26.1
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: slate
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para modo claro
+    - scheme: default
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para modo escuro
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.top
+    - content.code.annotate
+    - content.code.copy
+
+nav:
+  - Início: index.md
+  - Algoritmo: algoritmo.md
+  - Como Usar: uso.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - attr_list
+  - md_in_html
+  - tables
