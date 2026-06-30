@@ -1,6 +1,6 @@
 ## Vídeo de apresentação
 
-<!-- [![YouTube](https://img.shields.io/badge/YouTube-Assista-red?logo=youtube)](LINK_DO_VIDEO) -->
+https://youtu.be/NwjpXj-x3V4
 
 ## Alunos
 
